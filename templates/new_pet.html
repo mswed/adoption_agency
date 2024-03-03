@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container">
     <h1>Add a New Pet</h1>
-    <form action="">
+    <form action="" method="POST">
         {{ form.hidden_tag() }}
         <p>
             {{ form.name.label }}

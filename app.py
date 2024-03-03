@@ -22,10 +22,20 @@ def create_app(database='adopt', echo=True, csrf=True):
         pets = Pet.query.all()
         return render_template('home.html', pets=pets)
 
-    @app.route('/add')
+    @app.route('/add', methods=['GET', 'POST'])
     def add_pet():
         form = PetForm()
-        return render_template('new_pet.html', form=form)
+        if form.validate_on_submit():
+            new_pet = Pet(name=form.name.data,
+                          species=form.species.data,
+                          photo_url=form.photo_url.data,
+                          age=form.age.data,
+                          notes=form.notes.data)
+            db.session.add(new_pet)
+            db.session.commit()
+            return redirect('/')
+        else:
+            return render_template('new_pet.html', form=form)
 
     return app
 
