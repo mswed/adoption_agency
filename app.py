@@ -41,8 +41,17 @@ def create_app(database='adopt', echo=True, csrf=True):
     def show_pet(pet_id):
         pet = Pet.query.get(pet_id)
         form = PetForm(obj=pet)
+        if form.validate_on_submit():
+            pet = Pet.query.get(pet_id)
+            pet.photo_url = form.photo_url.data
+            pet.notes = form.notes.data
+            pet.available = form.available.data
+            db.session.add(pet)
+            db.session.commit()
 
-        return render_template('show_pet.html', form=form, pet=pet)
+            return redirect('/')
+        else:
+            return render_template('show_pet.html', form=form, pet=pet)
     return app
 
 
