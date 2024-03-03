@@ -5,12 +5,17 @@
 <ul>
     {% for pet in pets %}
     <li>
-        <img src="{{pet.photo_url}}" alt="Photo of {{pet.name}}">
-        {{pet.name}}
-        {% if pet.available %}
-        <b>Available</b>
-        {% endif %}
+        <div class="card" style="width: 18rem;">
+            <img src="{{pet.photo_url}}" class="card-img-top" alt="Photo of {{pet.name}}">
+            <div class="card-body">
+                <h5 class="card-title">{{pet.name}}</h5>
+                {% if pet.available %}
+                <b>Available</b>
+                {% endif %}
+            </div>
+        </div>
     </li>
     {% endfor %}
 </ul>
+
 {% endblock %}

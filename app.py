@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, flash
 from models import db, connect_db, Pet
+from forms import PetForm
 
 
 def create_app(database='adopt', echo=True, csrf=True):
@@ -20,6 +21,12 @@ def create_app(database='adopt', echo=True, csrf=True):
         """
         pets = Pet.query.all()
         return render_template('home.html', pets=pets)
+
+    @app.route('/add')
+    def add_pet():
+        form = PetForm()
+        return render_template('new_pet.html', form=form)
+
     return app
 
 

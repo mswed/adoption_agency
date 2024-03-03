@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}New Pet{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>Add a New Pet</h1>
+    <form action="">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.name.label }}
+            {{ form.name(class_='form-control') }}
+        </p>
+        <p>
+            {{ form.species.label }}
+            {{ form.species(class_='form-control') }}
+        </p>
+        <p>
+            {{ form.photo_url.label }}
+            {{ form.photo_url(class_='form-control') }}
+        </p>
+        <p>
+            {{ form.age.label }}
+            {{ form.age(class='form-control') }}
+        </p>
+        <p>
+            {{ form.notes.label }}
+            {{ form.notes(class_='form-control') }}
+        </p>
+
+        <button class="btn btn-success">Add Pet</button>
+    </form>
+</div>
+
+
+{% endblock %}
