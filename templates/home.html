@@ -2,6 +2,7 @@
 {% block title %}Crazy Pet Adoption Agency{% endblock %}
 {% block content %}
 <h1>Available Pets</h1>
+<a href="/add" class="btn btn-lg btn-success mb-3">Add Pet</a>
 <ul>
     {% for pet in pets %}
     <li>
@@ -12,6 +13,7 @@
                 {% if pet.available %}
                 <b>Available</b>
                 {% endif %}
+                <a href="/{{pet.id}}" class="btn btn-sm btn-primary"> Edit</a>
             </div>
         </div>
     </li>

@@ -37,6 +37,12 @@ def create_app(database='adopt', echo=True, csrf=True):
         else:
             return render_template('new_pet.html', form=form)
 
+    @app.route('/<int:pet_id>', methods=['GET', 'POST'])
+    def show_pet(pet_id):
+        pet = Pet.query.get(pet_id)
+        form = PetForm(obj=pet)
+
+        return render_template('show_pet.html', form=form, pet=pet)
     return app
 
 
