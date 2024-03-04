@@ -38,11 +38,9 @@ def create_app(database='adopt', echo=True, csrf=True):
         # Validate the form (also check if this is a post request)
         if form.validate_on_submit():
             # Post request, create a new pet and redirect to root
-            new_pet = Pet(name=form.name.data,
-                          species=form.species.data,
-                          photo_url=form.photo_url.data,
-                          age=form.age.data,
-                          notes=form.notes.data)
+            form_data = form.data
+            form_data.pop('csrf_token', None)
+            new_pet = Pet(**form_data)
             db.session.add(new_pet)
             db.session.commit()
 
